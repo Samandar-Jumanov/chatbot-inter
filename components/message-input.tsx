@@ -1,8 +1,8 @@
 import React from 'react';
 import { FiSend, FiFile, FiX } from 'react-icons/fi';
-import { IButtonsProps } from "@/types/chat-bot";
+import { IMessageInputProps } from "@/types/chat-bot";
 
-const Buttons: React.FC<IButtonsProps> = ({ 
+const MessageInput: React.FC<IMessageInputProps> = ({ 
   inputValue, 
   setInputValue, 
   handleSendMessage, 
@@ -56,4 +56,4 @@ const Buttons: React.FC<IButtonsProps> = ({
   );
 }
 
-export default Buttons;
+export default MessageInput;

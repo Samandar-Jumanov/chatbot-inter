@@ -1,11 +1,12 @@
 "use client"
 
 import { useState, useRef, useEffect } from 'react';
-import Buttons  from "@/components/Buttons"
+import MessageInput  from  "@/components/message-input"
 import { IMessageType } from "@/types/chat-bot"
 import { Messages } from '@/components/Messages';
 
 export default function Home() {
+
   const [messages, setMessages] = useState<IMessageType[]>([
     { type: 'ai', text: 'Hello! How can I assist you today?' },
   ]);
@@ -17,9 +18,8 @@ export default function Home() {
 
   const handleRemoveFile = () => {
     setSelectedFile(null);
-    setInputValue(''); // Clear input value when removing the file
+    setInputValue(''); 
   };
-  
 
   const scrollToBottom = () => {
     chatBoxRef.current?.scrollTo(0, chatBoxRef.current?.scrollHeight);
@@ -68,7 +68,7 @@ export default function Home() {
            messages={messages}
         />
 
-       <Buttons 
+       <MessageInput 
         inputValue={inputValue}
         setInputValue={setInputValue}
         handleFileUpload={handleFileUpload}

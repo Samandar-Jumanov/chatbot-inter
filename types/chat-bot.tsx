@@ -10,7 +10,7 @@ export type IMessageType = {
 } 
 
 
-export type IButtonsProps = {
+export type IMessageInputProps = {
     inputValue : string ,
     setInputValue : ( arg : string ) => void ,
     handleFileUpload : ( e: React.ChangeEvent<HTMLInputElement>  ) => void ,
