@@ -4,10 +4,9 @@
 
 
 
-export const data = async ( message : string ) : Promise<string> =>{
+export const queryPinecone = async ( message : string ) : Promise<string> =>{
 
     try {
-
 
         return " SOme kind of movies yeah"
 

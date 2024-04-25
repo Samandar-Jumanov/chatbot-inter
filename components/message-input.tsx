@@ -1,7 +1,7 @@
 import React from 'react';
 import { FiSend, FiFile, FiX } from 'react-icons/fi';
 import { IMessageInputProps } from "@/types/chat-bot";
-
+import { queryData } from '@/actions/queryMessage';
 const MessageInput: React.FC<IMessageInputProps> = ({ 
   inputValue, 
   setInputValue, 
@@ -13,6 +13,24 @@ const MessageInput: React.FC<IMessageInputProps> = ({
 
   const inputPlaceholder = selectedFile ? `File: ${selectedFile.name}` : 'Type your message...';
 
+
+  const sendQueryData = async ( ) =>{
+
+        try{
+
+          handleSendMessage() // to add current message to the array
+          const data  : File | string = selectedFile ? selectedFile : inputValue
+
+          const response = await queryData(data)
+
+          console.log(response)
+        }catch{
+
+        }
+  };
+
+
+  
   return (
     <div className="flex mt-4 relative">
       <input
@@ -26,7 +44,7 @@ const MessageInput: React.FC<IMessageInputProps> = ({
 
       <button
         className={`px-4 py-2 ${!inputValue && !selectedFile ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'} rounded-l-none focus:outline-none`}
-        onClick={handleSendMessage}
+        onClick={sendQueryData}
         disabled={!inputValue && !selectedFile}
       >
         <FiSend className="text-white text-lg" />
