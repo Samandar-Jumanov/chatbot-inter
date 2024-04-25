@@ -15,5 +15,6 @@ export type IButtonsProps = {
     setInputValue : ( arg : string ) => void ,
     handleFileUpload : ( e: React.ChangeEvent<HTMLInputElement>  ) => void ,
     handleSendMessage : (  ) => void ,
-    selectedFile  : File | null
+    selectedFile  : File | null,
+    handleRemoveFile : ( ) => void 
 }
