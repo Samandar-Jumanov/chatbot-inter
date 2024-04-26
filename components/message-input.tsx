@@ -2,7 +2,7 @@ import React from 'react';
 import { FiSend, FiFile, FiX } from 'react-icons/fi';
 import { IMessageInputProps , IMessageType} from "@/types/chat-bot";
 import axios from "axios"
-
+import { extractPdf } from '@/lib/extractQuestions';
 const MessageInput: React.FC<IMessageInputProps> = ({ 
   inputValue, 
   setInputValue, 
@@ -16,31 +16,38 @@ const MessageInput: React.FC<IMessageInputProps> = ({
 
 
   const inputPlaceholder = selectedFile ? `File: ${selectedFile.name}` : 'Type your message...';
-  const sendQueryData = async ( ) =>{
 
-        try{
+  const sendQueryData = async () => {
+    try {
+      handleSendMessage();
+  
+      let  data: File | string = selectedFile ? selectedFile : inputValue;
 
-          handleSendMessage() 
-          const data  : File | string = selectedFile ? selectedFile : inputValue
-          const response = await   axios.post("/api/query" , {
-              message : JSON.stringify(inputValue)
-          });
+      if(typeof data !== "string"){
+         data =  await  extractPdf(data)
+      }
+     
 
-          console.log(response.data)
-          const aiResponse : IMessageType = {
-                 text : "response",
-                 type : "ai"
-          };
+      const response = await axios.post("/api/query", {
+          message  : JSON.stringify(data)
+      })
+      
+  
+      const aiResponse: IMessageType = {
+        text: "response",
+        type: "ai"
+      };
 
-          addMessages(aiResponse)
-          console.log(response);
-
-        }catch( error : any ){
-          console.log(error.message)
-           throw new Error(error.message)
-        }
+  
+      addMessages(aiResponse);
+      console.table(response);
+    } catch (error : any ) {
+      console.error(error.message);
+      throw new Error(error.message);
+    }
   };
-
+  
+  
   
   return (
     <div className="flex mt-4 relative">
@@ -78,6 +85,7 @@ const MessageInput: React.FC<IMessageInputProps> = ({
             type="file"
             className="hidden"
             onChange={handleFileUpload}
+            accept='application/pdf'
           />
         </label>
       )}

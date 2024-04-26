@@ -4,13 +4,21 @@
 import { queryPinecone } from "@/lib/queryData";
 
 
+
+type Data = {
+     message : string 
+}
+
+
 export const POST = async ( request : Request , response : Response ) =>{
-    const data = await request.json();
-
-
-    const { message } : { message : string } = data ;
-
+    
+    const data : Data  = await request.json()
+    console.log({
+          data : data
+    })
+    
     try {
+        const message = data.message 
 
         if(!message) {
                 return new Response(JSON.stringify({

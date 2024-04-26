@@ -1,1 +1,1 @@
-declare module 'pdf-scraper';
+declare module 'react-pdftotext';

@@ -1,10 +1,17 @@
 
+
+import pdfToText from 'react-pdftotext'
+
+
+
 export const extractPdf = async (  file : File ) : Promise<string > =>{
 
     try {
 
-          return "File read"
+        const content = await pdfToText(file)
+         console.log(content)
 
+        return  content
     } catch (error : any ) {
         console.log({
               pdfErrror : error.message
