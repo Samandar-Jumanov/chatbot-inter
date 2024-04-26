@@ -1,14 +1,17 @@
 import React from 'react';
 import { FiSend, FiFile, FiX } from 'react-icons/fi';
-import { IMessageInputProps } from "@/types/chat-bot";
+import { IMessageInputProps , IMessageType} from "@/types/chat-bot";
 import { queryData } from '@/actions/queryMessage';
+
+
 const MessageInput: React.FC<IMessageInputProps> = ({ 
   inputValue, 
   setInputValue, 
   handleSendMessage, 
   handleFileUpload, 
   selectedFile,
-  handleRemoveFile
+  handleRemoveFile,
+  addMessages
 }) => {
 
   const inputPlaceholder = selectedFile ? `File: ${selectedFile.name}` : 'Type your message...';
@@ -18,16 +21,23 @@ const MessageInput: React.FC<IMessageInputProps> = ({
 
         try{
 
-          handleSendMessage() // to add current message to the array
+          handleSendMessage() 
           const data  : File | string = selectedFile ? selectedFile : inputValue
+          const response = await queryData('Me');
+          const aiResponse : IMessageType = {
+                 text : response,
+                 type : "ai"
+          };
 
-          const response = await queryData(data)
+          addMessages(aiResponse)
+          console.log(response);
 
-          console.log(response)
-        }catch{
-
+        }catch( error : any ){
+           throw new Error(error.message)
         }
   };
+
+
 
 
   
@@ -39,7 +49,7 @@ const MessageInput: React.FC<IMessageInputProps> = ({
         className="flex-1 px-4 py-2 rounded-l-lg bg-gray-700 focus:outline-none text-white text-lg"
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
-        onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+        onKeyPress={(e) => e.key === 'Enter' && sendQueryData()}
       />
 
       <button

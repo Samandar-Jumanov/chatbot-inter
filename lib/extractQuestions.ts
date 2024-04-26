@@ -12,11 +12,9 @@ export const extractPdf = async (  file : File ) : Promise<string > =>{
         console.log({
               pdfErrror : error.message
         })
-        
-
-        throw new Error(error.message)
+        throw new Error("Error working with pdf")
     }
-}
+};
 
 
 
@@ -31,9 +29,7 @@ export const extractDoc = async (  file : File ) : Promise<string> =>{
         console.log({
               pdfErrror : error.message
         })
-        
-
-        throw new Error(error.message)
+        throw new Error("Error working with doc file")
     }
 }
 

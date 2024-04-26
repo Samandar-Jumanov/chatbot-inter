@@ -11,6 +11,11 @@ export default function Home() {
     { type: 'ai', text: 'Hello! How can I assist you today?' },
   ]);
 
+
+  const addMessages =  (  aiResponse : IMessageType) =>{
+       setMessages(prevMessages => [...prevMessages, aiResponse]);
+  }
+
   const [inputValue, setInputValue] = useState<string>('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
@@ -43,11 +48,6 @@ export default function Home() {
       setSelectedFile(null);
     }
 
-    setTimeout(() => {
-      const aiResponse: IMessageType = { type: 'ai', text: 'I am just a demo bot. Please implement real AI logic.' };
-      setMessages(prevMessages => [...prevMessages, aiResponse]);
-    }, 1000);
-
     setInputValue('');
   };
 
@@ -75,7 +75,7 @@ export default function Home() {
         handleSendMessage={handleSendMessage}
         selectedFile={selectedFile}
         handleRemoveFile={handleRemoveFile}
-
+        addMessages={addMessages}
         />
 
       </div>

@@ -16,5 +16,6 @@ export type IMessageInputProps = {
     handleFileUpload : ( e: React.ChangeEvent<HTMLInputElement>  ) => void ,
     handleSendMessage : (  ) => void ,
     selectedFile  : File | null,
-    handleRemoveFile : ( ) => void 
+    handleRemoveFile : ( ) => void ,
+    addMessages  : ( aiResponse : IMessageType )  => void
 }

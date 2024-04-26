@@ -8,7 +8,7 @@ export const queryPinecone = async ( message : string ) : Promise<string> =>{
 
     try {
 
-        return " SOme kind of movies yeah"
+        return " Some kind of movies yeah"
 
     }catch( error : any ) {
         console.log({
