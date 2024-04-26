@@ -31,16 +31,15 @@ const MessageInput: React.FC<IMessageInputProps> = ({
       const response = await axios.post("/api/query", {
           message  : JSON.stringify(data)
       })
-      
   
+
       const aiResponse: IMessageType = {
-        text: "response",
+        text: response.data,
         type: "ai"
       };
 
   
       addMessages(aiResponse);
-      console.table(response);
     } catch (error : any ) {
       console.error(error.message);
       throw new Error(error.message);
