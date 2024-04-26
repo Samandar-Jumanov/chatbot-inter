@@ -10,12 +10,13 @@ export const queryData = async (data:  File |  string) => {
         if (typeof data === "string") {
             extractedText = data;
         } else if (data.type === "pdf") {
-            extractedText = "Pdf"
+            extractedText =   await  extractPdf(data)
         } else if (data.type === "doc" || "docx") {
-            extractedText = "Doc"
+            extractedText = await extractDoc(data)
         }else {
             return "Unsupported file format"
-        }
+        };
+        
         console.log({
              extractedText : extractedText
         })

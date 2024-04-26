@@ -1,12 +1,9 @@
-import PDF from 'pdf-scraper';
 
 export const extractPdf = async (  file : File ) : Promise<string > =>{
 
     try {
 
-        const pdf : string   = await PDF(file.arrayBuffer())
-
-        return pdf 
+          return "File read"
 
     } catch (error : any ) {
         console.log({
@@ -22,7 +19,9 @@ export const extractPdf = async (  file : File ) : Promise<string > =>{
 export const extractDoc = async (  file : File ) : Promise<string> =>{
 
     try {
-        const docText : string  = (await file.text()).toString()
+
+        console.log(file.text())
+        const docText : string  = "I am a doc text"
         return docText
 
     } catch (error : any ) {

@@ -24,8 +24,9 @@ const MessageInput: React.FC<IMessageInputProps> = ({
           handleSendMessage() 
           const data  : File | string = selectedFile ? selectedFile : inputValue
           const response = await queryData(data);
+          console.log(response)
           const aiResponse : IMessageType = {
-                 text : response,
+                 text : "response",
                  type : "ai"
           };
 
