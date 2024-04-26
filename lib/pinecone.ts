@@ -1,14 +1,11 @@
 import {  Pinecone } from "@pinecone-database/pinecone"
-import { config } from "dotenv"
+// import { config } from "dotenv"
 
-config();
+// config();
 
 
 const pineConeAPIKey : string  = process.env.PINECONE_API_KEY as string 
 
-console.log({
-    pinecone : pineConeAPIKey
-});
 
 const pinecone = new Pinecone({
       apiKey :  pineConeAPIKey

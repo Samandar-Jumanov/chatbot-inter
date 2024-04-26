@@ -1,8 +1,7 @@
 import React from 'react';
 import { FiSend, FiFile, FiX } from 'react-icons/fi';
 import { IMessageInputProps , IMessageType} from "@/types/chat-bot";
-import { queryData } from '@/actions/queryMessage';
-
+import axios from "axios"
 
 const MessageInput: React.FC<IMessageInputProps> = ({ 
   inputValue, 
@@ -23,8 +22,11 @@ const MessageInput: React.FC<IMessageInputProps> = ({
 
           handleSendMessage() 
           const data  : File | string = selectedFile ? selectedFile : inputValue
-          const response = await queryData(data);
-          console.log(response)
+          const response = await   axios.post("/api/query" , {
+              message : JSON.stringify(inputValue)
+          });
+
+          console.log(response.data)
           const aiResponse : IMessageType = {
                  text : "response",
                  type : "ai"
