@@ -2,16 +2,25 @@
 
 import pdfToText from 'react-pdftotext'
 
+function preprocessText(text : string ) : string  {
+    return text.replace(/\s+/g, ' ');
+}
 
 
 export const extractPdf = async (  file : File ) : Promise<string > =>{
 
     try {
 
-        const content = await pdfToText(file)
-         console.log(content)
+        const content : string  = await pdfToText(file)
 
-        return  content
+        console.log({
+               content : content.length
+        });
+
+        console.log(preprocessText(content).length);
+
+        return preprocessText(content);
+
     } catch (error : any ) {
         console.log({
               pdfErrror : error.message

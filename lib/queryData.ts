@@ -4,7 +4,6 @@ import chain from "./langchain"
 
 export const queryPinecone = async (message: string): Promise<any> => {
   try {
-    // Query Pinecone index
 
     const index = await pinecone.index("sample-movies");
     const queryEmbedding = await OpenAi.embedQuery(message);
