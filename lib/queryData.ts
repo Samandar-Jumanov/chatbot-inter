@@ -19,12 +19,10 @@ export const queryPinecone = async (message: string): Promise<any> => {
     const bestMatch = queryResponse.matches[0]?.metadata;
         
     const aiPrompt = await  chain.invoke( {
-         input : `   Do not send me objects  . Generate me good 
-         response from this data ${bestMatch} for this message  ${message} `
-    })
-
-    console.log(aiPrompt) 
-
+         input : `Do not send me objects  . Generate me good 
+         response from this data ${bestMatch} for this message  ${message} 
+         . I need to use it for chat app`
+    });
 
     return aiPrompt;
   } catch (error: any) {
