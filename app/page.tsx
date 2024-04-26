@@ -56,9 +56,11 @@ export default function Home() {
     if (file) {
       setSelectedFile(file);
     }
-
+    handleSendMessage()
   };
 
+
+  
   return (
     <main className="flex min-h-screen flex-col items-center justify-center p-4 bg-black text-white">
       <div className="flex flex-col w-full max-w-xl h-[80vh] p-6 bg-gray-800 rounded-lg shadow-lg">

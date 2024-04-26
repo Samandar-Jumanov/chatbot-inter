@@ -14,16 +14,16 @@ const MessageInput: React.FC<IMessageInputProps> = ({
   addMessages
 }) => {
 
+
+
   const inputPlaceholder = selectedFile ? `File: ${selectedFile.name}` : 'Type your message...';
-
-
   const sendQueryData = async ( ) =>{
 
         try{
 
           handleSendMessage() 
           const data  : File | string = selectedFile ? selectedFile : inputValue
-          const response = await queryData('Me');
+          const response = await queryData(data);
           const aiResponse : IMessageType = {
                  text : response,
                  type : "ai"
@@ -33,12 +33,10 @@ const MessageInput: React.FC<IMessageInputProps> = ({
           console.log(response);
 
         }catch( error : any ){
+          console.log(error.message)
            throw new Error(error.message)
         }
   };
-
-
-
 
   
   return (
@@ -54,7 +52,7 @@ const MessageInput: React.FC<IMessageInputProps> = ({
 
       <button
         className={`px-4 py-2 ${!inputValue && !selectedFile ? 'bg-gray-500 cursor-not-allowed' : 'bg-blue-500 hover:bg-blue-600'} rounded-l-none focus:outline-none`}
-        onClick={sendQueryData}
+        onClick={() => sendQueryData()}
         disabled={!inputValue && !selectedFile}
       >
         <FiSend className="text-white text-lg" />
