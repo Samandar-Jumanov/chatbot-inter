@@ -10,9 +10,11 @@
   },
   "dependencies": {
     "@langchain/anthropic": "^0.1.16",
+    "@langchain/cohere": "^0.0.8",
     "@langchain/openai": "^0.0.28",
     "@pinecone-database/pinecone": "^2.2.0",
     "axios": "^1.6.8",
+    "cohere-ai": "^7.9.5",
     "dotenv": "^16.4.5",
     "langchain": "^0.1.36",
     "next": "14.2.3",

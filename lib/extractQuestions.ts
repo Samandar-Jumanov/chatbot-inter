@@ -12,13 +12,6 @@ export const extractPdf = async (  file : File ) : Promise<string > =>{
     try {
 
         const content : string  = await pdfToText(file)
-
-        console.log({
-               content : content.length
-        });
-
-        console.log(preprocessText(content).length);
-
         return preprocessText(content);
 
     } catch (error : any ) {
@@ -28,7 +21,6 @@ export const extractPdf = async (  file : File ) : Promise<string > =>{
         throw new Error("Error working with pdf")
     }
 };
-
 
 
 
