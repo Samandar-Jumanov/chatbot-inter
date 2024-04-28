@@ -1,20 +1,22 @@
 import pinecone from "./pinecone";
 import embeddingsCohere from "./embeddings";
-import chain from "./langchain"
+import { chain , chat_history} from "./langchain"
 import { processResponse } from "./utils";
+import {  AIMessage , HumanMessage} from "@langchain/core/messages"
+
 
 export const queryPinecone = async (message: string): Promise<any> => {
   try {
 
 
-    if(message === "Hey" || message.trim() == "Howareyou") {
-      const aiPrompt = await  chain.invoke( {
-        input : `Introduce yourself . And ask them what to server`
-       });
+    // if(message === "Hey" || message.trim() == "Howareyou") {
+    //   const aiPrompt = await  chat.call( {
+    //     input : `Introduce yourself . And ask them what to server`
+    //    });
 
+    //    return aiPrompt
+    // };
 
-       return aiPrompt
-    };
 
 
     const index = await pinecone.index("sample-movies");
@@ -31,11 +33,22 @@ export const queryPinecone = async (message: string): Promise<any> => {
         
 const prompt = `Do not send me objects.
  Generate a good response using this data: 
- ${JSON.stringify(bestMatchMetadata)} for this message: "${message}". I need to use it for a chat app.`;
+ ${JSON.stringify(bestMatchMetadata)} for this message:
+"${message}". I need to use it for a chat app.`;
 
-const aiPrompt = await chain.invoke({
-    input: prompt
-});
+
+
+  const aiPrompt = await chain.invoke({
+        input : prompt,
+        chat_history : chat_history
+  });
+
+
+  const humanMessage = new HumanMessage(message)
+  const aiResponse = new AIMessage(aiPrompt)
+
+  chat_history.push(humanMessage)
+  chat_history.push(aiResponse)
 
     return processResponse(aiPrompt)
   } catch (error: any) {
