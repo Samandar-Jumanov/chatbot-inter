@@ -5,18 +5,15 @@ import { ChatPromptTemplate } from "@langchain/core/prompts";
 import { OpenAI } from "@langchain/openai"
 import { config } from "dotenv"
 import { StringOutputParser } from "@langchain/core/output_parsers"
-import { BufferMemory } from "langchain/memory";
-import {  AIMessage , HumanMessage} from "@langchain/core/messages"
-import { MessagesPlaceholder } from "@langchain/core/prompts"
-config();
+import {  AIMessage } from "@langchain/core/messages"
+import { MessagesPlaceholder } from "@langchain/core/prompts";
 
-export const memory = new  BufferMemory();
+
+config();
 
 
 const openAiApiKey : string = process.env.OPEN_AI_KEY as string 
 const parser = new StringOutputParser();
-
-
 
 export const openAi = new OpenAI({
    openAIApiKey  : openAiApiKey,
@@ -30,9 +27,7 @@ export const openAi = new OpenAI({
    `],
     new MessagesPlaceholder("chat_history"),
    ["human", "{input}"],
-]);
-
-
+])
 
 export const chat_history  = [
    new AIMessage("Hello! How can I assist you today?")

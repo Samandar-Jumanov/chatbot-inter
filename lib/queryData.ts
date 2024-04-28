@@ -9,16 +9,6 @@ export const queryPinecone = async (message: string): Promise<any> => {
   try {
 
 
-    // if(message === "Hey" || message.trim() == "Howareyou") {
-    //   const aiPrompt = await  chat.call( {
-    //     input : `Introduce yourself . And ask them what to server`
-    //    });
-
-    //    return aiPrompt
-    // };
-
-
-
     const index = await pinecone.index("sample-movies");
     const queryEmbedding = await embeddingsCohere.embedQuery(message);
 
@@ -31,10 +21,10 @@ export const queryPinecone = async (message: string): Promise<any> => {
 
     const bestMatchMetadata = queryResponse.matches[0]?.metadata;
         
-const prompt = `Do not send me objects.
- Generate a good response using this data: 
- ${JSON.stringify(bestMatchMetadata)} for this message:
-"${message}". I need to use it for a chat app.`;
+    const prompt = `Do not send me objects.
+    Generate a good response using this data: 
+    ${JSON.stringify(bestMatchMetadata)} for this message:
+    "${message}". I need to use it for a chat app.`;
 
 
 
