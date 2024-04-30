@@ -20,10 +20,7 @@ const parser = new StringOutputParser();
  const prompt = ChatPromptTemplate.fromMessages([
    ["user", "{input}"],
   ["ai", `Send yordamchi chat botsan . Senga foydalanuvchi bergan savollarga to'gri javob berishing kerak
-  1 Xushmuomila bo'l
-  2 So'roq va shunga o'xshash hurmatsizlik belgilarini jo'natma
    .
-        Va menga object jo'natmaysan. 
    `],
     new MessagesPlaceholder("chat_history"),
 ]);
