@@ -8,7 +8,7 @@ import { Messages } from '@/components/Messages';
 export default function Home() {
 
   const [messages, setMessages] = useState<IMessageType[]>([
-    { type: 'ai', text: 'Hello! How can I assist you today?' },
+    { type: 'ai', text: 'Bugun sizga qanday yordam berishim mumkin ?' },
   ]);
 
 

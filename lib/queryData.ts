@@ -19,12 +19,13 @@ export const queryPinecone = async (message: string): Promise<any> => {
       includeValues: true,
     });
 
+
+
     const bestMatchMetadata = queryResponse.matches[0]?.metadata;
         
-    const prompt = `Do not send me objects.
-    Generate a good response using this data: 
-    ${JSON.stringify(bestMatchMetadata)} for this message:
-    "${message}". I need to use it for a chat app.`;
+    const prompt = `Menga object jo'natmagan holda shu database orqali javob ber: 
+    ${JSON.stringify(bestMatchMetadata)}Va shu foydalanuvchi savoliga:
+    "${message}"`;
 
 
 
@@ -40,7 +41,8 @@ export const queryPinecone = async (message: string): Promise<any> => {
   chat_history.push(humanMessage)
   chat_history.push(aiResponse)
 
-    return processResponse(aiPrompt)
+    return processResponse(aiPrompt);
+
   } catch (error: any) {
     console.log({ queryingError: error.message });
     throw new Error(error.message);

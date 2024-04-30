@@ -4,7 +4,8 @@ import { config } from "dotenv";
 config();
 
 
-const anthropicApiKey = process.env.ANTHROPIC_AI_KEY
+const anthropicApiKey = process.env.ANTHROPIC_AI_KEY;
+
 
 if (!anthropicApiKey) {
   throw new Error('ANTHROPIC_AI_KEY is not defined');

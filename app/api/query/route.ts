@@ -13,15 +13,19 @@ type Data = {
 export const POST = async ( request : Request , response : Response ) =>{
     
     const data : Data  = await request.json()
+
+    console.log({
+          requestBody : data 
+    })
     try {
         const message = data.message 
 
-        if(!message) {
-                return new Response(JSON.stringify({
-                      message : "Invalid request",
-                      success : false 
-                }) , { status  : 400})
-        };
+        // if(!message) {
+        //         return new Response(JSON.stringify({
+        //               message : "Invalid request",
+        //               success : false 
+        //         }) , { status  : 400})
+        // };
         
         const response = await queryPinecone(message)
 
