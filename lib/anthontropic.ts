@@ -16,7 +16,7 @@ const anthontropic = new ChatAnthropic({
   anthropicApiKey: anthropicApiKey,
   model: "claude-3-haiku-20240307",
   maxTokens: 1000,
-  temperature: 0.7,
+  temperature: 0.2,
 });
 
 

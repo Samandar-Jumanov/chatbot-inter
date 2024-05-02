@@ -26,9 +26,12 @@ const parser = new StringOutputParser();
 ]);
 
 
-export const chat_history  = [
+
+
+export const chat_history  : HumanMessage[] | AIMessage[]    = [
    new HumanMessage("Assalomu aleykum"),
    new AIMessage("Bugun sizga qanday yordam berishim mumkin")
+
 ]
 
 export const chain  = prompt.pipe(anthontropic).pipe(parser)

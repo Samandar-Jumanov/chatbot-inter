@@ -19,14 +19,12 @@ export const queryPinecone = async (message: string): Promise<any> => {
       includeValues: true,
     });
 
-
-
     const bestMatchMetadata = queryResponse.matches[0]?.metadata;
         
     const prompt = `Menga object jo'natmagan holda  javob ber 
       foydalanuvchining shu   "${message}" ga  shu data orqali
     : 
-    ${JSON.stringify(bestMatchMetadata)} Va bu u
+    ${JSON.stringify(bestMatchMetadata)} Va bu u ${message}
   `;
 
   const aiPrompt = await chain.invoke({
@@ -35,13 +33,13 @@ export const queryPinecone = async (message: string): Promise<any> => {
   });
 
 
-  const humanMessage = new HumanMessage(message)
-  const aiResponse = new AIMessage(aiPrompt)
+  const humanMessage = new HumanMessage(message.trim())
+  const aiResponse = new AIMessage(aiPrompt.trim())
 
   chat_history.push(humanMessage)
   chat_history.push(aiResponse)
 
-    return aiPrompt === "" ? "Savolingizga tushunmadin qaytadan javob bera olasizmi" : aiPrompt
+    return aiPrompt === "" ? "Savolingizga tushunmadin qaytadan savol  bera olasizmi" : aiPrompt
 
   } catch (error: any) {
     console.log({ queryingError: error.message });
